@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    html,
+    body,
+    .wrapper {
+        height: 100%;
+    }
+
+    html,
+    body {
+        padding: 0;
+        margin: 0;
+    }
+
+    body {
+        font: 1rem/1.516 "Montserrat", Arial, sans-serif;
+    }
+
+    .wrapper {
+        position: relative;
+        background: url(https://wallpapers.com/images/hd/coding-background-kfgunh9ya1baezpu.jpg);
+        background-size: cover;
+        background-position: center;
+    }
+
+    .wrapper:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(33, 33, 33, 0.25);
+    }
+
+    header,
+    .content,
+    footer {
+        position: absolute;
+    }
+
+    header,
+    footer {
+        width: 100%;
+    }
+
+    .content {
+        top: 58%;
+        left: 54%;
+        text-align: center;
+        color: #fff;
+        transform: translate(-50%, -50%);
+    }
+
+    .content h1 {
+        text-align: center;
+        margin-top: 0;
+        font-size: 3.5rem;
+    }
+
+    .countdown {
+        display: flex;
+        font-size: 60px;
+        column-gap: 45px;
+        font-weight: 600;
+    }
+
+    .countdown>div {
+        float: left;
+        min-width: 80px;
+    }
+
+    .countdown span {
+        position: relative;
+        display: block;
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .countdown span:before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        right: 0;
+        left: 0;
+        margin-right: auto;
+        margin-left: auto;
+        width: 20px;
+        height: 1px;
+        background: #fff;
+    }
+
+
+    @media screen and (max-width: 480px) {}
+
+
+    @media (max-width:1024px) {
+        #h1 {
+            font-size: 2.5rem;
+        }
+
+        .countdown {
+            column-gap: 25px;
+        }
+    }
+
+    @media (min-width:768px) {
+        #h1 {
+            font-size: 2.2rem;
+        }
+
+        .countdown {
+            column-gap: 8px;
+            font-size: 40px;
+        }
+    }
+
+    @media (max-width:425px) {
+        #h1 {
+            font-size: 2.2rem;
+        }
+
+        .countdown {
+            column-gap: 0px;
+            font-size: 35px;
+        }
+
+        #logo {
+            font-size: 30px !important;
+        }
+    }
+</style>
+
+<body>
+    <div class="wrapper">
+        <h1 style="position: absolute;
+        color: white;
+        text-align: end;
+        right: 30px;
+        font-size: 45px;" id="logo">CODEX ALFA</h1>
+
+        <main class="content">
+            <h1 id="h1">COMING SOON!</h1>
+
+            <div class="countdown">
+                <div class="countdown__days">
+                    <div class="number"></div>
+                    <span class>Days</span>
+                </div>
+
+                <div class="countdown__hours">
+                    <div class="number"></div>
+                    <span class>Hours</span>
+                </div>
+
+                <div class="countdown__minutes">
+                    <div class="number"></div>
+                    <span class>Minutes</span>
+                </div>
+
+                <div class="countdown__seconds">
+                    <div class="number"></div>
+                    <span class>Seconds</span>
+                </div>
+            </div>
+
+        </main>
+
+
+    </div>
+
+    <script>
+        (() => {
+            // Specify the deadline date
+            const deadlineDate = new Date('March 1, 2024 00:00:01').getTime();
+
+            // Cache all countdown boxes into consts
+            const countdownDays = document.querySelector('.countdown__days .number');
+            const countdownHours = document.querySelector('.countdown__hours .number');
+            const countdownMinutes = document.querySelector('.countdown__minutes .number');
+            const countdownSeconds = document.querySelector('.countdown__seconds .number');
+
+            // Update the count down every 1 second (1000 milliseconds)
+            setInterval(() => {
+                // Get current date and time
+                const currentDate = new Date().getTime();
+
+                // Calculate the distance between current date and time and the deadline date and time
+                const distance = deadlineDate - currentDate;
+
+                // Calculations the data for remaining days, hours, minutes and seconds
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Insert the result data into individual countdown boxes
+                countdownDays.innerHTML = days;
+                countdownHours.innerHTML = hours;
+                countdownMinutes.innerHTML = minutes;
+                countdownSeconds.innerHTML = seconds;
+            }, 1000);
+        })();
+    </script>
+
+</body>
+
+</html>
